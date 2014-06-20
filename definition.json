@@ -1,0 +1,218 @@
+{
+    "php/lint": {
+        "*": {
+            "exclude": {
+                "combined": false,
+                "path": false,
+                "file": false
+            },
+            "include": {
+                "dir": false,
+                "file": {
+                    "parameter": "-l %s",
+                    "separator": null,
+                    "wildcard": false,
+                    "regex": false,
+                    "multiple": false,
+                    "relative": false
+                }
+            }
+        }
+    },
+    "squizlabs/php_codesniffer": {
+        "1.*": {
+            "exclude": {
+                "combined": true,
+                "path": {
+                    "parameter": "--ignore=%s",
+                    "separator": ",",
+                    "wildcard": true,
+                    "regex": true,
+                    "multiple": false,
+                    "relative": false
+                },
+                "file": {
+                    "parameter": "--ignore=%s",
+                    "separator": ",",
+                    "wildcard": true,
+                    "regex": true,
+                    "multiple": false,
+                    "relative": false
+                }
+            },
+            "include": {
+                "combined": false,
+                "dir": {
+                    "parameter": "%s",
+                    "separator": null,
+                    "wildcard": true,
+                    "regex": true,
+                    "multiple": true,
+                    "relative": false
+                },
+                "file": {
+                    "parameter": "%s",
+                    "separator": null,
+                    "wildcard": true,
+                    "regex": true,
+                    "multiple": true,
+                    "relative": false
+                }
+            }
+        }
+    },
+    "phpmd/phpmd": {
+        "1.*,2.*": {
+            "exclude": {
+                "combined": true,
+                "path": {
+                    "parameter": "--exclude %s",
+                    "separator": ",",
+                    "wildcard": true,
+                    "regex": false,
+                    "multiple": false,
+                    "relative": false
+                },
+                "file": {
+                    "parameter": "--exclude %s",
+                    "separator": ",",
+                    "wildcard": true,
+                    "regex": false,
+                    "multiple": false,
+                    "relative": false
+                }
+            },
+            "include": {
+                "combined": false,
+                "dir": {
+                    "parameter": "%s",
+                    "separator": null,
+                    "wildcard": false,
+                    "regex": false,
+                    "multiple": false,
+                    "relative": false
+                },
+                "file": {
+                    "parameter": "%s",
+                    "separator": null,
+                    "wildcard": false,
+                    "regex": false,
+                    "multiple": false,
+                    "relative": false
+                }
+            }
+        }
+    },
+    "phpdocumentor/phpdocumentor": {
+        "2.*": {
+            "exclude": {
+                "combined": false,
+                "path": {
+                    "parameter": "-i %s",
+                    "separator": ",",
+                    "wildcard": true,
+                    "regex": false,
+                    "multiple": false,
+                    "relative": false
+                },
+                "file": false
+            },
+            "include": {
+                "combined": false,
+                "dir": {
+                    "parameter": "-d %s",
+                    "separator": ",",
+                    "wildcard": true,
+                    "regex": false,
+                    "multiple": false,
+                    "relative": false
+                },
+                "file": {
+                    "parameter": "-f %s",
+                    "separator": null,
+                    "wildcard": true,
+                    "regex": false,
+                    "multiple": false,
+                    "relative": false
+                }
+            }
+        }
+    },
+    "pdepend/pdepend": {
+        "1,*2.*": {
+            "exclude": {
+                "combined": true,
+                "path": {
+                    "parameter": "--ignore=%s",
+                    "separator": ",",
+                    "wildcard": true,
+                    "regex": false,
+                    "multiple": false,
+                    "relative": true
+                },
+                "file": false
+            },
+            "include": {
+                "combined": true,
+                "dir": {
+                    "parameter": "%s",
+                    "separator": ",",
+                    "wildcard": false,
+                    "regex": false,
+                    "multiple": false,
+                    "relative": false
+                },
+                "file": {
+                    "parameter": "%s",
+                    "separator": ",",
+                    "wildcard": false,
+                    "regex": false,
+                    "multiple": false,
+                    "relative": false
+                }
+            }
+        }
+    },
+    "sebastian/phpcpd": {
+        "2.*": {
+            "exclude": {
+                "combined": true,
+                "path": {
+                    "parameter": "--exclude=%s",
+                    "separator": null,
+                    "wildcard": false,
+                    "regex": false,
+                    "multiple": true,
+                    "relative": true
+                },
+                "file": {
+                    "parameter": "--exclude-names=%s",
+                    "separator": ",",
+                    "wildcard": true,
+                    "regex": false,
+                    "multiple": false,
+                    "relative": true
+                }
+            },
+            "include": {
+                "combined": true,
+                "dir": {
+                    "parameter": "%s",
+                    "separator": null,
+                    "wildcard": true,
+                    "regex": false,
+                    "multiple": true,
+                    "relative": false
+                },
+                "file": {
+                    "parameter": "--names=%s",
+                    "separator": ",",
+                    "wildcard": true,
+                    "regex": false,
+                    "multiple": false,
+                    "relative": true
+                }
+            }
+        }
+    }
+}
