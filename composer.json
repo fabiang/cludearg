@@ -1,5 +1,6 @@
 {
     "name": "fabiang/cludearg",
+    "description": "Normalizer library for command line arguments for in- or exclude paths and files",
     "license": "BSD-2-Clause",
     "type": "library",
     "homepage": "https://github.com/fabiang/cludearg",
