@@ -21,6 +21,11 @@
     "require": {
         "php": ">=5.3"
     },
+    "require-dev": {
+        "phpunit/phpunit": "~4.1",
+        "mikey179/vfsStream": "~1.2",
+        "lstrojny/phpunit-clever-and-smart": "0.*"
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
