@@ -39,112 +39,49 @@ namespace Fabiang\Cludearg\Definition;
 /**
  *
  */
-abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
+interface ArgumentDefinitionInterface
 {
-
-    /**
-     * Parameter defintion.
-     *
-     * %s will be replaced by path defintion.
-     *
-     * @var string
-     */
-    protected $parameter;
-
-    /**
-     * Separator between paths or files.
-     *
-     * @var string
-     */
-    protected $separator = null;
-
-    /**
-     * Path or file definition supports wildcards.
-     *
-     * @var bool
-     */
-    protected $wildcard = false;
-
-    /**
-     * Path or file definition supports regex.
-     *
-     * @var bool
-     */
-    protected $regex = false;
-
-    /**
-     * Parameter can be used multiple times.
-     *
-     * @var bool
-     */
-    protected $multiple = false;
-
-    /**
-     * Path or file definition must be relative to the source path.
-     *
-     * @var bool
-     */
-    protected $relative = false;
-
     /**
      * Get parameter defintion.
      *
      * @return string
      */
-    public function getParameter()
-    {
-        return $this->parameter;
-    }
+    public function getParameter();
 
     /**
      * Get separator between paths or files.
      *
      * @return string
      */
-    public function getSeparator()
-    {
-        return $this->separator;
-    }
+    public function getSeparator();
 
     /**
      * Path or file definition supports wildcards.
      *
      * @return bool
      */
-    public function isWildcard()
-    {
-        return $this->wildcard;
-    }
+    public function isWildcard();
 
     /**
      * Path or file definition supports regex.
      *
      * @return bool
      */
-    public function isRegex()
-    {
-        return $this->regex;
-    }
+    public function isRegex();
 
     /**
      * Parameter can be used multiple times.
      *
      * @return bool
      */
-    public function isMultiple()
-    {
-        return $this->multiple;
-    }
+    public function isMultiple();
 
     /**
      * Path or file definition must be relative to the source path.
      *
      * @return bool
      */
-    public function isRelative()
-    {
-        return $this->relative;
-    }
+    public function isRelative();
 
     /**
      * Set parameter defintion.
@@ -152,27 +89,14 @@ abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
      * @param string $parameter
      * @return $this
      */
-    public function setParameter($parameter)
-    {
-        $this->parameter = (string) $parameter;
-        return $this;
-    }
-
+    public function setParameter($parameter);
     /**
      * Set separator between paths or files.
      *
      * @param string $separator
      * @return $this
      */
-    public function setSeparator($separator)
-    {
-        if (null === $separator) {
-            $this->separator = null;
-        } else {
-            $this->separator = (string) $separator;
-        }
-        return $this;
-    }
+    public function setSeparator($separator);
 
     /**
      * Path or file definition supports wildcards.
@@ -180,11 +104,7 @@ abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
      * @param bool $wildcard
      * @return $this
      */
-    public function setWildcard($wildcard)
-    {
-        $this->wildcard = (bool) $wildcard;
-        return $this;
-    }
+    public function setWildcard($wildcard);
 
     /**
      * Path or file definition supports regex.
@@ -192,11 +112,7 @@ abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
      * @param string $regex
      * @return $this
      */
-    public function setRegex($regex)
-    {
-        $this->regex = (bool) $regex;
-        return $this;
-    }
+    public function setRegex($regex);
 
     /**
      * Parameter can be used multiple times.
@@ -204,21 +120,12 @@ abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
      * @param string $multiple
      * @return $this
      */
-    public function setMultiple($multiple)
-    {
-        $this->multiple = (bool) $multiple;
-        return $this;
-    }
-
+    public function setMultiple($multiple);
     /**
      * Path or file definition must be relative to the source path.
      *
      * @param string $relative
      * @return $this
      */
-    public function setRelative($relative)
-    {
-        $this->relative = (bool) $relative;
-        return $this;
-    }
+    public function setRelative($relative);
 }
