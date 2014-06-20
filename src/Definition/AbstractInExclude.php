@@ -39,7 +39,78 @@ namespace Fabiang\Cludearg\Definition;
 /**
  *
  */
-class ExcludeDefinition extends AbstractInExclude
+abstract class AbstractInExclude implements InExcludeInterface
 {
 
+    /**
+     * File and path defintion is combined in one parameter.
+     *
+     * @var bool
+     */
+    protected $combined = false;
+
+    /**
+     * File definition.
+     *
+     * @var ArgumentDefinitionInterface
+     */
+    protected $file;
+
+    /**
+     * Path definition
+     *
+     * @var ArgumentDefinitionInterface
+     */
+    protected $path;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isCombined()
+    {
+        return $this->combined;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCombined($combined)
+    {
+        $this->combined = (bool) $combined;
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setFile(ArgumentDefinitionInterface $file)
+    {
+        $this->file = $file;
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPath(ArgumentDefinitionInterface $path)
+    {
+        $this->path = $path;
+        return $this;
+    }
 }

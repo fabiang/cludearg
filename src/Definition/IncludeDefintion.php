@@ -39,7 +39,7 @@ namespace Fabiang\Cludearg\Definition;
 /**
  *
  */
-class IncludeDefintion
+class IncludeDefintion extends AbstractInExclude
 {
 
 }
