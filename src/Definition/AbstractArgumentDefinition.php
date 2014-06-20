@@ -87,9 +87,7 @@ abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
     protected $relative = false;
 
     /**
-     * Get parameter defintion.
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function getParameter()
     {
@@ -97,9 +95,7 @@ abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
     }
 
     /**
-     * Get separator between paths or files.
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function getSeparator()
     {
@@ -107,9 +103,7 @@ abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
     }
 
     /**
-     * Path or file definition supports wildcards.
-     *
-     * @return bool
+     * {@inheritDoc}
      */
     public function isWildcard()
     {
@@ -117,9 +111,7 @@ abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
     }
 
     /**
-     * Path or file definition supports regex.
-     *
-     * @return bool
+     * {@inheritDoc}
      */
     public function isRegex()
     {
@@ -127,9 +119,7 @@ abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
     }
 
     /**
-     * Parameter can be used multiple times.
-     *
-     * @return bool
+     * {@inheritDoc}
      */
     public function isMultiple()
     {
@@ -137,9 +127,7 @@ abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
     }
 
     /**
-     * Path or file definition must be relative to the source path.
-     *
-     * @return bool
+     * {@inheritDoc}
      */
     public function isRelative()
     {
@@ -147,10 +135,7 @@ abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
     }
 
     /**
-     * Set parameter defintion.
-     *
-     * @param string $parameter
-     * @return $this
+     * {@inheritDoc}
      */
     public function setParameter($parameter)
     {
@@ -159,10 +144,7 @@ abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
     }
 
     /**
-     * Set separator between paths or files.
-     *
-     * @param string $separator
-     * @return $this
+     * {@inheritDoc}
      */
     public function setSeparator($separator)
     {
@@ -175,10 +157,7 @@ abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
     }
 
     /**
-     * Path or file definition supports wildcards.
-     *
-     * @param bool $wildcard
-     * @return $this
+     * {@inheritDoc}
      */
     public function setWildcard($wildcard)
     {
@@ -187,10 +166,7 @@ abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
     }
 
     /**
-     * Path or file definition supports regex.
-     *
-     * @param string $regex
-     * @return $this
+     * {@inheritDoc}
      */
     public function setRegex($regex)
     {
@@ -199,10 +175,7 @@ abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
     }
 
     /**
-     * Parameter can be used multiple times.
-     *
-     * @param string $multiple
-     * @return $this
+     * {@inheritDoc}
      */
     public function setMultiple($multiple)
     {
@@ -211,10 +184,7 @@ abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
     }
 
     /**
-     * Path or file definition must be relative to the source path.
-     *
-     * @param string $relative
-     * @return $this
+     * {@inheritDoc}
      */
     public function setRelative($relative)
     {
