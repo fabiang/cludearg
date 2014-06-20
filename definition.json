@@ -7,6 +7,7 @@
                 "file": null
             },
             "include": {
+                "combined": false,
                 "path": null,
                 "file": {
                     "parameter": "-l %s",
