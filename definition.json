@@ -3,11 +3,11 @@
         "*": {
             "exclude": {
                 "combined": false,
-                "path": false,
-                "file": false
+                "path": null,
+                "file": null
             },
             "include": {
-                "dir": false,
+                "path": null,
                 "file": {
                     "parameter": "-l %s",
                     "separator": null,
@@ -42,7 +42,7 @@
             },
             "include": {
                 "combined": false,
-                "dir": {
+                "path": {
                     "parameter": "%s",
                     "separator": null,
                     "wildcard": true,
@@ -84,7 +84,7 @@
             },
             "include": {
                 "combined": false,
-                "dir": {
+                "path": {
                     "parameter": "%s",
                     "separator": null,
                     "wildcard": false,
@@ -115,11 +115,11 @@
                     "multiple": false,
                     "relative": false
                 },
-                "file": false
+                "file": null
             },
             "include": {
                 "combined": false,
-                "dir": {
+                "path": {
                     "parameter": "-d %s",
                     "separator": ",",
                     "wildcard": true,
@@ -150,11 +150,11 @@
                     "multiple": false,
                     "relative": true
                 },
-                "file": false
+                "file": null
             },
             "include": {
                 "combined": true,
-                "dir": {
+                "path": {
                     "parameter": "%s",
                     "separator": ",",
                     "wildcard": false,
@@ -196,7 +196,7 @@
             },
             "include": {
                 "combined": true,
-                "dir": {
+                "path": {
                     "parameter": "%s",
                     "separator": null,
                     "wildcard": true,
