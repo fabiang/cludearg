@@ -39,7 +39,7 @@ namespace Fabiang\Cludearg\Definition;
 /**
  *
  */
-class Path
+class Path extends AbstractArgumentDefinition
 {
 
 }
