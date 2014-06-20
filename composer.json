@@ -1,0 +1,28 @@
+{
+    "name": "fabiang/cludearg",
+    "license": "BSD-2-Clause",
+    "type": "library",
+    "homepage": "https://github.com/fabiang/cludearg",
+    "authors": [
+        {
+            "name": "Fabian Grutschus",
+            "email": "f.grutschus@lubyte.de",
+            "homepage": "http://www.lubyte.de/",
+            "role": "developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Fabiang\\Cludearg\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.3"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
