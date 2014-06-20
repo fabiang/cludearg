@@ -39,78 +39,51 @@ namespace Fabiang\Cludearg\Definition;
 /**
  *
  */
-class Version implements VersionInterface
+interface VersionInterface
 {
 
     /**
-     * Version string.
+     * Get exclude definition.
      *
-     * @var string
+     * @return InExcludeInterface
      */
-    protected $version;
+    public function getExclude();
 
     /**
-     * Exclude definition.
+     * Get include definition.
      *
-     * @var InExcludeInterface
+     * @return InExcludeInterface
      */
-    public $exclude;
+    public function getInclude();
 
     /**
-     * Include definition.
+     * Get version string.
      *
-     * @var InExcludeInterface
+     * @return string
      */
-    public $include;
+    public function getVersion();
 
     /**
-     * {@inheritDoc}
+     * Set exclude definition.
+     *
+     * @param InExcludeInterface $exclude
+     * @return $this
      */
-    public function getExclude()
-    {
-        return $this->exclude;
-    }
+    public function setExclude(InExcludeInterface $exclude);
 
     /**
-     * {@inheritDoc}
+     * Set include definition.
+     *
+     * @param InExcludeInterface $include
+     * @return $this
      */
-    public function getInclude()
-    {
-        return $this->include;
-    }
+    public function setInclude(InExcludeInterface $include);
 
     /**
-     * {@inheritDoc}
+     * Set version string
+     *
+     * @param string $version
+     * @return $this
      */
-    public function getVersion()
-    {
-        return $this->version;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setExclude(InExcludeInterface $exclude)
-    {
-        $this->exclude = $exclude;
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setInclude(InExcludeInterface $include)
-    {
-        $this->include = $include;
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setVersion($version)
-    {
-        $this->version = (string) $version;
-        return $this;
-    }
+    public function setVersion($version);
 }
