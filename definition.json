@@ -140,7 +140,7 @@
         }
     },
     "pdepend/pdepend": {
-        "1,*2.*": {
+        "1.*,2.*": {
             "exclude": {
                 "combined": true,
                 "path": {
