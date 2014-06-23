@@ -38,6 +38,11 @@ namespace Fabiang\Cludearg;
 
 use Fabiang\Cludearg\Definition\Application;
 use Fabiang\Cludearg\Definition\Version;
+use Fabiang\Cludearg\Definition\InExcludeInterface;
+use Fabiang\Cludearg\Definition\IncludeDefinition;
+use Fabiang\Cludearg\Definition\ExcludeDefinition;
+use Fabiang\Cludearg\Definition\File;
+use Fabiang\Cludearg\Definition\Path;
 
 /**
  *
@@ -60,7 +65,7 @@ class Loader
 
             $versions = array();
             foreach ($applicationDefinition as $version => $versionDefinition) {
-                static::addVersion($versions, $version, $versionDefinition);
+                self::addVersion($versions, $version, $versionDefinition);
             }
 
             $application->setVersions($versions);
@@ -70,20 +75,68 @@ class Loader
         return $definitionObject;
     }
 
-    protected static function addVersion(array &$versions, $version, array $versionDefinition)
+    private static function addVersion(array &$versions, $version, array $versionDefinition)
     {
         $versionsStrings = explode(',', $version);
         $count = count($versionsStrings);
 
         if (count($versionsStrings) > 1) {
             for ($i = 0; $i < $count - 1; $i++) {
-                static::addVersion($versions, $versionsStrings[$i], $versionDefinition);
+                self::addVersion($versions, $versionsStrings[$i], $versionDefinition);
             }
         }
 
         $versionObject = new Version();
         $versionObject->setVersion($versionsStrings[$count - 1]);
+        if (isset($versionDefinition['include'])) {
+            self::addInclude($versionObject, $versionDefinition['include']);
+        }
+        if (isset($versionDefinition['exclude'])) {
+            self::addExclude($versionObject, $versionDefinition['exclude']);
+        }
         $versions[] = $versionObject;
+    }
+
+    private static function addInclude(Version $version, $definition)
+    {
+        $include = new IncludeDefinition();
+        $include->setCombined($definition['combined']);
+        self::addFile($include, $definition['file']);
+        self::addPath($include, $definition['path']);
+        $version->setInclude($include);
+    }
+
+    private static function addExclude(Version $version, $definition)
+    {
+        $exclude = new ExcludeDefinition();
+        $exclude->setCombined($definition['combined']);
+        self::addFile($exclude, $definition['file']);
+        self::addPath($exclude, $definition['path']);
+        $version->setExclude($exclude);
+    }
+
+    private static function addFile(InExcludeInterface $inExclude, $definition)
+    {
+        $file = new File();
+        $file->setParameter($definition['parameter']);
+        $file->setSeparator($definition['separator']);
+        $file->setMultiple($definition['multiple']);
+        $file->setRegex($definition['regex']);
+        $file->setRelative($definition['relative']);
+        $file->setWildcard($definition['wildcard']);
+        $inExclude->setFile($file);
+    }
+
+    private static function addPath(InExcludeInterface $inExclude, $definition)
+    {
+        $path = new Path();
+        $path->setParameter($definition['parameter']);
+        $path->setSeparator($definition['separator']);
+        $path->setMultiple($definition['multiple']);
+        $path->setRegex($definition['regex']);
+        $path->setRelative($definition['relative']);
+        $path->setWildcard($definition['wildcard']);
+        $inExclude->setPath($path);
     }
 
 }

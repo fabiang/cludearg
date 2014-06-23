@@ -54,14 +54,14 @@ class Version implements VersionInterface
      *
      * @var InExcludeInterface
      */
-    public $exclude;
+    protected $exclude;
 
     /**
      * Include definition.
      *
      * @var InExcludeInterface
      */
-    public $include;
+    protected $include;
 
     /**
      * {@inheritDoc}

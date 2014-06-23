@@ -57,7 +57,12 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Fabiang\Cludearg\Loader => =>load
+     * @covers Fabiang\Cludearg\Loader
+     * @uses Fabiang\Cludearg\Definition
+     * @uses Fabiang\Cludearg\Definition\AbstractInExclude
+     * @uses Fabiang\Cludearg\Definition\Application
+     * @uses Fabiang\Cludearg\Definition\Version
+     * @uses Fabiang\Cludearg\Definition\AbstractArgumentDefinition
      */
     public function testLoad()
     {
@@ -120,5 +125,45 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('0.*', $version1->getVersion());
         $this->assertSame('1.*', $version2->getVersion());
         $this->assertSame('2.*', $version3->getVersion());
+
+        $include = $version1->getInclude();
+        $exclude = $version1->getExclude();
+        $this->assertInstanceOf('\Fabiang\Cludearg\Definition\IncludeDefinition', $include);
+        $this->assertInstanceOf('\Fabiang\Cludearg\Definition\ExcludeDefinition', $exclude);
+
+        $this->assertFalse($include->isCombined());
+        $this->assertTrue($exclude->isCombined());
+
+        $file = $include->getFile();
+        $this->assertSame('%s', $file->getParameter());
+        $this->assertNull($file->getSeparator());
+        $this->assertTrue($file->isMultiple());
+        $this->assertTrue($file->isRegex());
+        $this->assertTrue($file->isRelative());
+        $this->assertTrue($file->isWildcard());
+
+        $path = $include->getPath();
+        $this->assertSame('%s', $path->getParameter());
+        $this->assertNull($path->getSeparator());
+        $this->assertTrue($path->isMultiple());
+        $this->assertTrue($path->isRegex());
+        $this->assertTrue($path->isRelative());
+        $this->assertTrue($path->isWildcard());
+
+        $file = $exclude->getFile();
+        $this->assertSame('--ignore=%s', $file->getParameter());
+        $this->assertSame(',', $file->getSeparator());
+        $this->assertTrue($file->isMultiple());
+        $this->assertTrue($file->isRegex());
+        $this->assertFalse($file->isRelative());
+        $this->assertTrue($file->isWildcard());
+
+        $path = $exclude->getPath();
+        $this->assertSame('--ignore=%s', $path->getParameter());
+        $this->assertSame(',', $path->getSeparator());
+        $this->assertTrue($path->isMultiple());
+        $this->assertTrue($path->isRegex());
+        $this->assertTrue($path->isRelative());
+        $this->assertTrue($path->isWildcard());
     }
 }
