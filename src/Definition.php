@@ -41,7 +41,7 @@ use Fabiang\Cludearg\Definition\Application;
 /**
  *
  */
-class Definition
+class Definition implements DefinitionInterface
 {
 
     /**
@@ -99,5 +99,18 @@ class Definition
         }
 
         return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setOptions(array $options)
+    {
+        foreach ($options as $name => $applicationDefinition) {
+            $application = new Application();
+            $application->setName($name);
+            $application->setOptions($applicationDefinition);
+            $this->addApplication($application);
+        }
     }
 }

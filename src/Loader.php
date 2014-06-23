@@ -36,8 +36,6 @@
 
 namespace Fabiang\Cludearg;
 
-use Fabiang\Cludearg\Definition\Application;
-
 /**
  *
  */
@@ -52,14 +50,7 @@ class Loader
     public static function load(array $definition)
     {
         $definitionObject = new Definition;
-
-        foreach ($definition as $name => $applicationDefinition) {
-            $application = new Application();
-            $application->setName($name);
-            $application->setOptions($applicationDefinition);
-            $definitionObject->addApplication($application);
-        }
-
+        $definitionObject->setOptions($definition);
         return $definitionObject;
     }
 }

@@ -79,4 +79,114 @@ class DefinitionTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($application, $this->object->getApplication('myvendor/myapplication'));
         $this->assertNull($this->object->getApplication('myvendor/myunknownapplication'));
     }
+
+    /**
+     * @covers Fabiang\Cludearg\Definition::setOptions
+     * @uses Fabiang\Cludearg\Definition
+     * @uses Fabiang\Cludearg\Definition\AbstractInExclude
+     * @uses Fabiang\Cludearg\Definition\Application
+     * @uses Fabiang\Cludearg\Definition\Version
+     * @uses Fabiang\Cludearg\Definition\AbstractArgumentDefinition
+     */
+    public function testSetOptions()
+    {
+        $this->object->setOptions(array(
+            'php/lint' => array(
+                '0.*'     => array(
+                    'exclude' => array(
+                        'combined' => true,
+                        'path'     => array(
+                            'parameter' => '--ignore=%s',
+                            'separator' => ',',
+                            'wildcard'  => true,
+                            'regex'     => true,
+                            'multiple'  => true,
+                            'relative'  => true
+                        ),
+                        'file'     => array(
+                            'parameter' => '--ignore=%s',
+                            'separator' => ',',
+                            'wildcard'  => true,
+                            'regex'     => true,
+                            'multiple'  => true,
+                            'relative'  => false
+                        )
+                    ),
+                    'include' => array(
+                        'combined' => false,
+                        'path'     => array(
+                            'parameter' => '%s',
+                            'separator' => null,
+                            'wildcard'  => true,
+                            'regex'     => true,
+                            'multiple'  => true,
+                            'relative'  => true
+                        ),
+                        'file'     => array(
+                            'parameter' => '%s',
+                            'separator' => null,
+                            'wildcard'  => true,
+                            'regex'     => true,
+                            'multiple'  => true,
+                            'relative'  => true
+                        )
+                    ),
+                ),
+                '1.*,2.*' => array(
+                ),
+            )
+        ));
+
+        $this->assertCount(1, $this->object->getApplications());
+        $application = $this->object->getApplication('php/lint');
+        $this->assertCount(3, $application->getVersions());
+        $this->assertSame('php/lint', $application->getName());
+        $version = $application->getVersions();
+        $version1 = $version[0];
+        $version2 = $version[1];
+        $version3 = $version[2];
+        $this->assertSame('0.*', $version1->getVersion());
+        $this->assertSame('1.*', $version2->getVersion());
+        $this->assertSame('2.*', $version3->getVersion());
+
+        $include = $version1->getInclude();
+        $exclude = $version1->getExclude();
+        $this->assertInstanceOf('\Fabiang\Cludearg\Definition\IncludeDefinition', $include);
+        $this->assertInstanceOf('\Fabiang\Cludearg\Definition\ExcludeDefinition', $exclude);
+
+        $this->assertFalse($include->isCombined());
+        $this->assertTrue($exclude->isCombined());
+
+        $file = $include->getFile();
+        $this->assertSame('%s', $file->getParameter());
+        $this->assertNull($file->getSeparator());
+        $this->assertTrue($file->isMultiple());
+        $this->assertTrue($file->isRegex());
+        $this->assertTrue($file->isRelative());
+        $this->assertTrue($file->isWildcard());
+
+        $path = $include->getPath();
+        $this->assertSame('%s', $path->getParameter());
+        $this->assertNull($path->getSeparator());
+        $this->assertTrue($path->isMultiple());
+        $this->assertTrue($path->isRegex());
+        $this->assertTrue($path->isRelative());
+        $this->assertTrue($path->isWildcard());
+
+        $file = $exclude->getFile();
+        $this->assertSame('--ignore=%s', $file->getParameter());
+        $this->assertSame(',', $file->getSeparator());
+        $this->assertTrue($file->isMultiple());
+        $this->assertTrue($file->isRegex());
+        $this->assertFalse($file->isRelative());
+        $this->assertTrue($file->isWildcard());
+
+        $path = $exclude->getPath();
+        $this->assertSame('--ignore=%s', $path->getParameter());
+        $this->assertSame(',', $path->getSeparator());
+        $this->assertTrue($path->isMultiple());
+        $this->assertTrue($path->isRegex());
+        $this->assertTrue($path->isRelative());
+        $this->assertTrue($path->isWildcard());
+    }
 }
