@@ -100,33 +100,14 @@ class Loader
     private static function addInclude(Version $version, $definition)
     {
         $include = new IncludeDefinition();
-        $include->setCombined($definition['combined']);
-        self::addFile($include, $definition['file']);
-        self::addPath($include, $definition['path']);
+        $include->setOptions($definition);
         $version->setInclude($include);
     }
 
     private static function addExclude(Version $version, $definition)
     {
         $exclude = new ExcludeDefinition();
-        $exclude->setCombined($definition['combined']);
-        self::addFile($exclude, $definition['file']);
-        self::addPath($exclude, $definition['path']);
+        $exclude->setOptions($definition);
         $version->setExclude($exclude);
     }
-
-    private static function addFile(InExcludeInterface $inExclude, $definition)
-    {
-        $file = new File();
-        $file->setOptions($definition);
-        $inExclude->setFile($file);
-    }
-
-    private static function addPath(InExcludeInterface $inExclude, $definition)
-    {
-        $path = new Path();
-        $path->setOptions($definition);
-        $inExclude->setPath($path);
-    }
-
 }

@@ -36,10 +36,12 @@
 
 namespace Fabiang\Cludearg\Definition;
 
+use Fabiang\Cludearg\DefinitionInterface;
+
 /**
  *
  */
-abstract class AbstractInExclude implements InExcludeInterface
+abstract class AbstractInExclude implements InExcludeInterface, DefinitionInterface
 {
 
     /**
@@ -112,5 +114,21 @@ abstract class AbstractInExclude implements InExcludeInterface
     {
         $this->path = $path;
         return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setOptions(array $options)
+    {
+        $this->setCombined($options['combined']);
+
+        $path = new Path();
+        $path->setOptions($options['path']);
+        $this->setPath($path);
+
+        $file = new File();
+        $file->setOptions($options['file']);
+        $this->setFile($file);
     }
 }

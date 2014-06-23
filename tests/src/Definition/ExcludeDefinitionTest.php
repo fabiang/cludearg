@@ -84,4 +84,48 @@ class ExcludeDefinitionTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue($this->object->setCombined(1)->isCombined());
     }
+
+    /**
+     * @covers Fabiang\Cludearg\Definition\ExcludeDefinition::setOptions
+     * @uses Fabiang\Cludearg\Definition\AbstractInExclude
+     * @uses Fabiang\Cludearg\Definition\AbstractArgumentDefinition
+     */
+    public function testSetOptions()
+    {
+        $this->object->setOptions(array(
+            'combined' => true,
+            'path'     => array(
+                'parameter' => '--ignore=%s',
+                'separator' => ',',
+                'wildcard'  => true,
+                'regex'     => true,
+                'multiple'  => true,
+                'relative'  => true
+            ),
+            'file'     => array(
+                'parameter' => '--ignore=%s',
+                'separator' => ',',
+                'wildcard'  => true,
+                'regex'     => true,
+                'multiple'  => true,
+                'relative'  => false
+            )
+        ));
+
+        $file = $this->object->getFile();
+        $this->assertSame('--ignore=%s', $file->getParameter());
+        $this->assertSame(',', $file->getSeparator());
+        $this->assertTrue($file->isMultiple());
+        $this->assertTrue($file->isRegex());
+        $this->assertFalse($file->isRelative());
+        $this->assertTrue($file->isWildcard());
+
+        $path = $this->object->getPath();
+        $this->assertSame('--ignore=%s', $path->getParameter());
+        $this->assertSame(',', $path->getSeparator());
+        $this->assertTrue($path->isMultiple());
+        $this->assertTrue($path->isRegex());
+        $this->assertTrue($path->isRelative());
+        $this->assertTrue($path->isWildcard());
+    }
 }
