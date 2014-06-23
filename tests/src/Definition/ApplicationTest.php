@@ -75,4 +75,67 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
         $versions = array($this->getMock(__NAMESPACE__ . '\\VersionInterface'));
         $this->assertSame($versions, $this->object->setVersions($versions)->getVersions());
     }
+
+    /**
+     * @covers Fabiang\Cludearg\Definition\Application::setOptions
+     * @uses Fabiang\Cludearg\Definition\AbstractInExclude
+     * @uses Fabiang\Cludearg\Definition\AbstractArgumentDefinition
+     * @uses Fabiang\Cludearg\Definition\Version
+     * @uses Fabiang\Cludearg\Definition\Application
+     */
+    public function testSetOptions()
+    {
+        $this->object->setOptions(array(
+            '0.*'     => array(
+                'exclude' => array(
+                    'combined' => true,
+                    'path'     => array(
+                        'parameter' => '--ignore=%s',
+                        'separator' => ',',
+                        'wildcard'  => true,
+                        'regex'     => true,
+                        'multiple'  => true,
+                        'relative'  => true
+                    ),
+                    'file'     => array(
+                        'parameter' => '--ignore=%s',
+                        'separator' => ',',
+                        'wildcard'  => true,
+                        'regex'     => true,
+                        'multiple'  => true,
+                        'relative'  => false
+                    )
+                ),
+                'include' => array(
+                    'combined' => false,
+                    'path'     => array(
+                        'parameter' => '%s',
+                        'separator' => null,
+                        'wildcard'  => true,
+                        'regex'     => true,
+                        'multiple'  => true,
+                        'relative'  => true
+                    ),
+                    'file'     => array(
+                        'parameter' => '%s',
+                        'separator' => null,
+                        'wildcard'  => true,
+                        'regex'     => true,
+                        'multiple'  => true,
+                        'relative'  => true
+                    )
+                ),
+            ),
+            '1.*,2.*' => array(
+            )
+        ));
+
+        $version = $this->object->getVersions();
+        $version1 = $version[0];
+        $version2 = $version[1];
+        $version3 = $version[2];
+        $this->assertSame('0.*', $version1->getVersion());
+        $this->assertSame('1.*', $version2->getVersion());
+        $this->assertSame('2.*', $version3->getVersion());
+    }
 }

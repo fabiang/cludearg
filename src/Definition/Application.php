@@ -36,10 +36,12 @@
 
 namespace Fabiang\Cludearg\Definition;
 
+use Fabiang\Cludearg\DefinitionInterface;
+
 /**
  *
  */
-class Application
+class Application implements DefinitionInterface
 {
 
     /**
@@ -99,5 +101,26 @@ class Application
     {
         $this->versions[] = $version;
         return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setOptions(array $options)
+    {
+        foreach ($options as $version => $definition) {
+            $versions = explode(',', $version);
+
+            $version = new Version;
+            $version->setOptions($definition);
+            $version->setVersion(array_shift($versions));
+            $this->addVersion($version);
+
+            while (count($versions) > 0) {
+                $version = clone $version;
+                $version->setVersion(array_shift($versions));
+                $this->addVersion($version);
+            }
+        }
     }
 }

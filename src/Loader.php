@@ -62,39 +62,10 @@ class Loader
         foreach ($definition as $name => $applicationDefinition) {
             $application = new Application();
             $application->setName($name);
-
-            $versions = array();
-            foreach ($applicationDefinition as $version => $versionDefinition) {
-                self::addVersion($versions, $version, $versionDefinition);
-            }
-
-            $application->setVersions($versions);
+            $application->setOptions($applicationDefinition);
             $definitionObject->addApplication($application);
         }
 
         return $definitionObject;
-    }
-
-    /**
-     *
-     * @param array $versions
-     * @param type $version
-     * @param array $versionDefinition
-     */
-    private static function addVersion(array &$versions, $version, array $versionDefinition)
-    {
-        $versionsStrings = explode(',', $version);
-        $count = count($versionsStrings);
-
-        if (count($versionsStrings) > 1) {
-            for ($i = 0; $i < $count - 1; $i++) {
-                self::addVersion($versions, $versionsStrings[$i], $versionDefinition);
-            }
-        }
-
-        $versionObject = new Version();
-        $versionObject->setVersion($versionsStrings[$count - 1]);
-        $versionObject->setOptions($versionDefinition);
-        $versions[] = $versionObject;
     }
 }
