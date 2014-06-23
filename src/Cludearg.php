@@ -158,7 +158,7 @@ class Cludearg
     /**
      * Make paths absolute if definition matches.
      *
-     * @param string $paths
+     * @param array  $paths
      * @param string $path
      * @param bool   $relative
      * @return string
