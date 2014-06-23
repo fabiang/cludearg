@@ -81,6 +81,7 @@ class Cludearg
         $arguments      = array('exclude' => array(), 'include' => array());
         $loopDefinition = array('exclude' => $definition->getExclude(), 'include' => $definition->getInclude());
         foreach ($loopDefinition as $type => $definitionObject) {
+            // ugly but intentionally
             $loopPaths = $$type;
             $argument  = &$arguments[$type];
 
@@ -107,7 +108,7 @@ class Cludearg
 
                 if (null !== $definitionObject->getFile()) {
 
-                    // continue if either path or file can be defined
+                    // continue if only either path or file can be defined
                     if ($definitionObject->isOnlyOne() && !empty($argument)) {
                         continue;
                     }
