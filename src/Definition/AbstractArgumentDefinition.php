@@ -36,10 +36,12 @@
 
 namespace Fabiang\Cludearg\Definition;
 
+use Fabiang\Cludearg\DefinitionInterface;
+
 /**
  *
  */
-abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
+abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface, DefinitionInterface
 {
 
     /**
@@ -190,5 +192,19 @@ abstract class AbstractArgumentDefinition implements ArgumentDefinitionInterface
     {
         $this->relative = (bool) $relative;
         return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setOptions(array $options)
+    {
+        foreach ($options as $option => $value) {
+            $method = 'set' . ucfirst($option);
+
+            if (method_exists($this, $method)) {
+                call_user_func(array($this, $method), $value);
+            }
+        }
     }
 }

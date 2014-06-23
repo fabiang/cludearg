@@ -110,4 +110,25 @@ class FileTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue($this->object->setRelative(1)->isRelative());
     }
+
+    /**
+     * @covers Fabiang\Cludearg\Definition\File::setOptions
+     * @uses Fabiang\Cludearg\Definition\AbstractArgumentDefinition
+     */
+    public function testSetOptions()
+    {
+        $this->object->setOptions(array(
+            'parameter' => '%s',
+            'separator' => null,
+            'wildcard'  => true,
+            'regex'     => true,
+            'multiple'  => true,
+            'relative'  => true
+        ));
+        $this->assertSame('%s', $this->object->getParameter());
+        $this->assertNull($this->object->getSeparator());
+        $this->assertTrue($this->object->isMultiple());
+        $this->assertTrue($this->object->isRegex());
+        $this->assertTrue($this->object->isRelative());
+    }
 }

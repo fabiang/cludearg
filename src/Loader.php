@@ -118,24 +118,14 @@ class Loader
     private static function addFile(InExcludeInterface $inExclude, $definition)
     {
         $file = new File();
-        $file->setParameter($definition['parameter']);
-        $file->setSeparator($definition['separator']);
-        $file->setMultiple($definition['multiple']);
-        $file->setRegex($definition['regex']);
-        $file->setRelative($definition['relative']);
-        $file->setWildcard($definition['wildcard']);
+        $file->setOptions($definition);
         $inExclude->setFile($file);
     }
 
     private static function addPath(InExcludeInterface $inExclude, $definition)
     {
         $path = new Path();
-        $path->setParameter($definition['parameter']);
-        $path->setSeparator($definition['separator']);
-        $path->setMultiple($definition['multiple']);
-        $path->setRegex($definition['regex']);
-        $path->setRelative($definition['relative']);
-        $path->setWildcard($definition['wildcard']);
+        $path->setOptions($definition);
         $inExclude->setPath($path);
     }
 
