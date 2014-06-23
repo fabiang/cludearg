@@ -176,11 +176,20 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
      * @uses Fabiang\Cludearg\Definition\Version
      * @uses Fabiang\Cludearg\Definition\AbstractArgumentDefinition
      */
-    public function testLoadJson()
+    public function testLoadJSON()
     {
         $this->assertInstanceOf(
             '\\Fabiang\\Cludearg\\Definition',
             $this->object->loadJSON(__DIR__ . '/../../definition.json')
         );
+    }
+
+    /**
+     * @covers Fabiang\Cludearg\Loader::loadJSON
+     * @expectedException \RuntimeException
+     */
+    public function testLoadJSONFileNotReadable()
+    {
+        $this->object->loadJSON(__DIR__ . '/unknown.json');
     }
 }
