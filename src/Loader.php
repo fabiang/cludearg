@@ -37,12 +37,6 @@
 namespace Fabiang\Cludearg;
 
 use Fabiang\Cludearg\Definition\Application;
-use Fabiang\Cludearg\Definition\Version;
-use Fabiang\Cludearg\Definition\InExcludeInterface;
-use Fabiang\Cludearg\Definition\IncludeDefinition;
-use Fabiang\Cludearg\Definition\ExcludeDefinition;
-use Fabiang\Cludearg\Definition\File;
-use Fabiang\Cludearg\Definition\Path;
 
 /**
  *
