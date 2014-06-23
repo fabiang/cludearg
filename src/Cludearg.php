@@ -82,7 +82,7 @@ class Cludearg
                 if (null !== $definitionObject->getPath()) {
                     $pathObject = $definitionObject->getPath();
 
-                    $paths = array_filter($loopPaths, function ($file) use($path)  {
+                    $paths = array_filter($loopPaths, function ($file) use ($path) {
                         return is_dir($path . '/' . $file);
                     });
 
@@ -102,7 +102,7 @@ class Cludearg
 
                     $fileObject = $definitionObject->getFile();
 
-                    $files = array_filter($loopPaths, function ($file) use($path)  {
+                    $files = array_filter($loopPaths, function ($file) use ($path) {
                         return is_file($path . '/' . $file);
                     });
 

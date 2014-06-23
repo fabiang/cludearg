@@ -35,6 +35,7 @@
  */
 
 namespace Fabiang\Cludearg;
+
 use org\bovigo\vfs\vfsStream;
 
 /**
