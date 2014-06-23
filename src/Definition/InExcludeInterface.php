@@ -86,4 +86,19 @@ interface InExcludeInterface
      * @return ArgumentDefinitionInterface
      */
     public function getFile();
+
+    /**
+     * Either a path or files can be defined.
+     *
+     * @return bool
+     */
+    public function isOnlyOne();
+
+    /**
+     * Set that either a path or files can be defined.
+     *
+     * @param bool $onlyOne
+     * @return $this
+     */
+    public function setOnlyOne($onlyOne);
 }

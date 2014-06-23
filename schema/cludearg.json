@@ -33,6 +33,9 @@
                 "combined": {
                     "type": "boolean"
                 },
+                "onlyOne": {
+                    "type": "boolean"
+                },
                 "path": {
                     "$ref": "#/definitions/argument"
                 },

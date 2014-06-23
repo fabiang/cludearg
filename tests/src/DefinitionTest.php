@@ -95,6 +95,7 @@ class DefinitionTest extends \PHPUnit_Framework_TestCase
                 '0.*'     => array(
                     'exclude' => array(
                         'combined' => true,
+                        'onlyOne'  => true,
                         'path'     => array(
                             'parameter' => '--ignore=%s',
                             'separator' => ',',
@@ -114,6 +115,7 @@ class DefinitionTest extends \PHPUnit_Framework_TestCase
                     ),
                     'include' => array(
                         'combined' => false,
+                        'onlyOne'  => true,
                         'path'     => array(
                             'parameter' => '%s',
                             'separator' => null,

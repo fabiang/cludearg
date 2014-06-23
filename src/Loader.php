@@ -63,7 +63,7 @@ class Loader
      * @param string $filename
      * @return Definition
      */
-    public function loadJSON($filename)
+    public static function loadJSON($filename)
     {
         if (!is_readable($filename)) {
             throw new \RuntimeException('JSON file "' . $filename . '" doesn\'t readable');

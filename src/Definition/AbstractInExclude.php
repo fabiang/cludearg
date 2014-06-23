@@ -52,6 +52,13 @@ abstract class AbstractInExclude implements InExcludeInterface, DefinitionInterf
     protected $combined = false;
 
     /**
+     * Either a path or files can be defined.
+     *
+     * @var bool
+     */
+    protected $onlyOne = false;
+
+    /**
      * File definition.
      *
      * @var ArgumentDefinitionInterface
@@ -119,9 +126,27 @@ abstract class AbstractInExclude implements InExcludeInterface, DefinitionInterf
     /**
      * {@inheritDoc}
      */
+    public function isOnlyOne()
+    {
+        return $this->onlyOne;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setOnlyOne($onlyOne)
+    {
+        $this->onlyOne = (bool) $onlyOne;
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setOptions(array $options)
     {
         $this->setCombined($options['combined']);
+        $this->setOnlyOne($options['onlyOne']);
 
         $path = new Path();
         $path->setOptions((array) $options['path']);

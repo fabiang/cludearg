@@ -86,6 +86,15 @@ class ExcludeDefinitionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Fabiang\Cludearg\Definition\ExcludeDefinition::isOnlyOne
+     * @covers Fabiang\Cludearg\Definition\ExcludeDefinition::setOnlyOne
+     */
+    public function testSetAndIsOnlyOne()
+    {
+        $this->assertTrue($this->object->setOnlyOne(1)->isOnlyOne());
+    }
+
+    /**
      * @covers Fabiang\Cludearg\Definition\ExcludeDefinition::setOptions
      * @uses Fabiang\Cludearg\Definition\AbstractInExclude
      * @uses Fabiang\Cludearg\Definition\AbstractArgumentDefinition
@@ -94,6 +103,7 @@ class ExcludeDefinitionTest extends \PHPUnit_Framework_TestCase
     {
         $this->object->setOptions(array(
             'combined' => true,
+            'onlyOne'  => true,
             'path'     => array(
                 'parameter' => '--ignore=%s',
                 'separator' => ',',

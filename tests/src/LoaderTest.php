@@ -71,6 +71,7 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
                 '0.*'     => array(
                     'exclude' => array(
                         'combined' => true,
+                        'onlyOne'  => true,
                         'path'     => array(
                             'parameter' => '--ignore=%s',
                             'separator' => ',',
@@ -90,6 +91,7 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
                     ),
                     'include' => array(
                         'combined' => false,
+                        'onlyOne'  => true,
                         'path'     => array(
                             'parameter' => '%s',
                             'separator' => null,
@@ -133,6 +135,7 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($include->isCombined());
         $this->assertTrue($exclude->isCombined());
+        $this->assertTrue($exclude->isOnlyOne());
 
         $file = $include->getFile();
         $this->assertSame('%s', $file->getParameter());

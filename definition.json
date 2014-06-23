@@ -3,11 +3,13 @@
         "*": {
             "exclude": {
                 "combined": false,
+                "onlyOne": false,
                 "path": null,
                 "file": null
             },
             "include": {
                 "combined": false,
+                "onlyOne": false,
                 "path": null,
                 "file": {
                     "parameter": "-l %s",
@@ -24,6 +26,7 @@
         "1.*": {
             "exclude": {
                 "combined": true,
+                "onlyOne": false,
                 "path": {
                     "parameter": "--ignore=%s",
                     "separator": ",",
@@ -43,6 +46,7 @@
             },
             "include": {
                 "combined": false,
+                "onlyOne": false,
                 "path": {
                     "parameter": "%s",
                     "separator": null,
@@ -66,6 +70,7 @@
         "1.*,2.*": {
             "exclude": {
                 "combined": true,
+                "onlyOne": false,
                 "path": {
                     "parameter": "--exclude %s",
                     "separator": ",",
@@ -85,6 +90,7 @@
             },
             "include": {
                 "combined": false,
+                "onlyOne": true,
                 "path": {
                     "parameter": "%s",
                     "separator": null,
@@ -108,6 +114,7 @@
         "2.*": {
             "exclude": {
                 "combined": false,
+                "onlyOne": false,
                 "path": {
                     "parameter": "-i %s",
                     "separator": ",",
@@ -120,6 +127,7 @@
             },
             "include": {
                 "combined": false,
+                "onlyOne": false,
                 "path": {
                     "parameter": "-d %s",
                     "separator": ",",
@@ -143,6 +151,7 @@
         "1.*,2.*": {
             "exclude": {
                 "combined": true,
+                "onlyOne": false,
                 "path": {
                     "parameter": "--ignore=%s",
                     "separator": ",",
@@ -155,6 +164,7 @@
             },
             "include": {
                 "combined": true,
+                "onlyOne": false,
                 "path": {
                     "parameter": "%s",
                     "separator": ",",
@@ -178,6 +188,7 @@
         "2.*": {
             "exclude": {
                 "combined": true,
+                "onlyOne": false,
                 "path": {
                     "parameter": "--exclude=%s",
                     "separator": null,
@@ -197,6 +208,7 @@
             },
             "include": {
                 "combined": true,
+                "onlyOne": false,
                 "path": {
                     "parameter": "%s",
                     "separator": null,
