@@ -81,9 +81,10 @@ class Cludearg
 
         $arguments      = array('exclude' => array(), 'include' => array());
         $loopDefinition = array('exclude' => $definition->getExclude(), 'include' => $definition->getInclude());
+        $inexclude      = array('exclude' => $exclude, 'include' => $include);
         foreach ($loopDefinition as $type => $definitionObject) {
             // ugly but intentionally
-            $loopPaths = $$type;
+            $loopPaths = $inexclude[$type];
             $argument  = &$arguments[$type];
 
             if ($definitionObject->isCombined() && ($definitionObject->getPath() || $definitionObject->getFile())) {
