@@ -36,10 +36,12 @@
 
 namespace Fabiang\Cludearg\Definition;
 
+use Fabiang\Cludearg\DefinitionInterface;
+
 /**
  *
  */
-class Version implements VersionInterface
+class Version implements VersionInterface, DefinitionInterface
 {
 
     /**
@@ -112,5 +114,23 @@ class Version implements VersionInterface
     {
         $this->version = (string) $version;
         return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setOptions(array $options)
+    {
+        if (isset($options['include'])) {
+            $include = new IncludeDefinition();
+            $include->setOptions($options['include']);
+            $this->setInclude($include);
+        }
+
+        if (isset($options['exclude'])) {
+            $exclude = new ExcludeDefinition();
+            $exclude->setOptions($options['exclude']);
+            $this->setExclude($exclude);
+        }
     }
 }

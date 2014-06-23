@@ -75,6 +75,12 @@ class Loader
         return $definitionObject;
     }
 
+    /**
+     *
+     * @param array $versions
+     * @param type $version
+     * @param array $versionDefinition
+     */
     private static function addVersion(array &$versions, $version, array $versionDefinition)
     {
         $versionsStrings = explode(',', $version);
@@ -88,26 +94,7 @@ class Loader
 
         $versionObject = new Version();
         $versionObject->setVersion($versionsStrings[$count - 1]);
-        if (isset($versionDefinition['include'])) {
-            self::addInclude($versionObject, $versionDefinition['include']);
-        }
-        if (isset($versionDefinition['exclude'])) {
-            self::addExclude($versionObject, $versionDefinition['exclude']);
-        }
+        $versionObject->setOptions($versionDefinition);
         $versions[] = $versionObject;
-    }
-
-    private static function addInclude(Version $version, $definition)
-    {
-        $include = new IncludeDefinition();
-        $include->setOptions($definition);
-        $version->setInclude($include);
-    }
-
-    private static function addExclude(Version $version, $definition)
-    {
-        $exclude = new ExcludeDefinition();
-        $exclude->setOptions($definition);
-        $version->setExclude($exclude);
     }
 }

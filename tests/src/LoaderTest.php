@@ -57,7 +57,8 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Fabiang\Cludearg\Loader
+     * @covers Fabiang\Cludearg\Loader::load
+     * @covers Fabiang\Cludearg\Loader::addVersion
      * @uses Fabiang\Cludearg\Definition
      * @uses Fabiang\Cludearg\Definition\AbstractInExclude
      * @uses Fabiang\Cludearg\Definition\Application

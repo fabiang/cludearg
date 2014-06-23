@@ -84,4 +84,57 @@ class VersionTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame('1', $this->object->setVersion(1)->getVersion());
     }
+
+    /**
+     * @covers Fabiang\Cludearg\Definition\Version::setOptions
+     * @uses Fabiang\Cludearg\Definition\AbstractInExclude
+     * @uses Fabiang\Cludearg\Definition\AbstractArgumentDefinition
+     * @uses Fabiang\Cludearg\Definition\Version
+     */
+    public function testSetOptions()
+    {
+        $this->object->setOptions(array(
+            'exclude' => array(
+                'combined' => true,
+                'path'     => array(
+                    'parameter' => '--ignore=%s',
+                    'separator' => ',',
+                    'wildcard'  => true,
+                    'regex'     => true,
+                    'multiple'  => true,
+                    'relative'  => true
+                ),
+                'file'     => array(
+                    'parameter' => '--ignore=%s',
+                    'separator' => ',',
+                    'wildcard'  => true,
+                    'regex'     => true,
+                    'multiple'  => true,
+                    'relative'  => false
+                )
+            ),
+            'include' => array(
+                'combined' => false,
+                'path'     => array(
+                    'parameter' => '%s',
+                    'separator' => null,
+                    'wildcard'  => true,
+                    'regex'     => true,
+                    'multiple'  => true,
+                    'relative'  => true
+                ),
+                'file'     => array(
+                    'parameter' => '%s',
+                    'separator' => null,
+                    'wildcard'  => true,
+                    'regex'     => true,
+                    'multiple'  => true,
+                    'relative'  => true
+                )
+            ),
+        ));
+
+        $this->assertInstanceOf('\Fabiang\Cludearg\Definition\IncludeDefinition', $this->object->getInclude());
+        $this->assertInstanceOf('\Fabiang\Cludearg\Definition\ExcludeDefinition', $this->object->getExclude());
+    }
 }
