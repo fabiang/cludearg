@@ -37,6 +37,7 @@
 namespace Fabiang\Cludearg;
 
 use Fabiang\Cludearg\Definition\ArgumentDefinitionInterface;
+use Fabiang\Cludearg\Util\Version as VersionUtil;
 
 /**
  *
@@ -215,7 +216,7 @@ class Cludearg
         }
 
         $versions = $foundApplication->getVersions();
-        // @todo find right version
+        $version = VersionUtil::findMostMatching($version, $versions);
         return $versions[0];
     }
 }

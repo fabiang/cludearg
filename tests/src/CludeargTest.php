@@ -87,6 +87,7 @@ class CludeargTest extends \PHPUnit_Framework_TestCase
      * @uses Fabiang\Cludearg\Definition\Application
      * @uses Fabiang\Cludearg\Definition\Version
      * @uses Fabiang\Cludearg\Definition\AbstractArgumentDefinition
+     * @uses Fabiang\Cludearg\Util\Version::findMostMatching
      * @dataProvider provideApplications
      */
     public function testGetArgument($application, $version, array $include, array $exclude, $argument)
