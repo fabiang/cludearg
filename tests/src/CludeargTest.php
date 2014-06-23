@@ -80,6 +80,7 @@ class CludeargTest extends \PHPUnit_Framework_TestCase
      * @covers Fabiang\Cludearg\Cludearg::makeAbsolute
      * @covers Fabiang\Cludearg\Cludearg::concat
      * @covers Fabiang\Cludearg\Cludearg::findDefinition
+     * @covers Fabiang\Cludearg\Cludearg::addPaths
      * @uses Fabiang\Cludearg\Loader
      * @uses Fabiang\Cludearg\Definition
      * @uses Fabiang\Cludearg\Definition\AbstractInExclude

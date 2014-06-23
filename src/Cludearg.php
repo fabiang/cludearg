@@ -50,6 +50,10 @@ class Cludearg
      */
     protected $definition;
 
+    /**
+     *
+     * @param Definition $definition
+     */
     public function __construct(Definition $definition = null)
     {
         if (null === $definition) {
@@ -59,6 +63,16 @@ class Cludearg
         $this->definition = $definition;
     }
 
+    /**
+     * Get argument for an application.
+     *
+     * @param string $application Application name
+     * @param string $version     Application version
+     * @param array  $include     Includes
+     * @param array  $exclude     Excludes
+     * @param string $path        Path for checking files
+     * @return string
+     */
     public function getArgument($application, $version, array $include, array $exclude, $path)
     {
         $definition = $this->findDefinition($application, $version);
@@ -80,16 +94,14 @@ class Cludearg
                 );
             } else {
                 if (null !== $definitionObject->getPath()) {
-                    $pathObject = $definitionObject->getPath();
-
-                    $paths = array_filter($loopPaths, function ($file) use ($path) {
-                        return is_dir($path . '/' . $file);
-                    });
-
-                    $this->concat(
+                    $this->addPaths(
                         $argument,
-                        $pathObject,
-                        $this->makeAbsolute($paths, $path, $pathObject->isRelative())
+                        $loopPaths,
+                        $path,
+                        function ($file) use ($path) {
+                            return is_dir($path . '/' . $file);
+                        },
+                        $definitionObject->getPath()
                     );
                 }
 
@@ -100,17 +112,14 @@ class Cludearg
                         continue;
                     }
 
-                    $fileObject = $definitionObject->getFile();
-
-                    $files = array_filter($loopPaths, function ($file) use ($path) {
-                        return is_file($path . '/' . $file);
-                    });
-
-
-                    $this->concat(
+                    $this->addPaths(
                         $argument,
-                        $fileObject,
-                        $this->makeAbsolute($files, $path, $fileObject->isRelative())
+                        $loopPaths,
+                        $path,
+                        function ($file) use ($path) {
+                            return is_file($path . '/' . $file);
+                        },
+                        $definitionObject->getFile()
                     );
                 }
             }
@@ -120,6 +129,39 @@ class Cludearg
         return trim(trim(implode(' ', $arguments['exclude'])) . ' ' . trim(implode(' ', $arguments['include'])));
     }
 
+    /**
+     * Add paths.
+     *
+     * @param array                       $argument
+     * @param array                       $loopPaths
+     * @param string                      $path
+     * @param callable                    $callback
+     * @param ArgumentDefinitionInterface $definitionObject
+     */
+    protected function addPaths(
+        array &$argument,
+        array $loopPaths,
+        $path,
+        $callback,
+        ArgumentDefinitionInterface $definitionObject
+    ) {
+        $files = array_filter($loopPaths, $callback);
+
+        $this->concat(
+            $argument,
+            $definitionObject,
+            $this->makeAbsolute($files, $path, $definitionObject->isRelative())
+        );
+    }
+
+    /**
+     * Make paths absolute if definition matches.
+     *
+     * @param string $paths
+     * @param string $path
+     * @param bool   $relative
+     * @return string
+     */
     protected function makeAbsolute($paths, $path, $relative)
     {
         if (false === $relative) {
@@ -131,7 +173,14 @@ class Cludearg
         return $paths;
     }
 
-    protected function concat(&$argument, $definition, $paths)
+    /**
+     * Concat paths.
+     *
+     * @param array                       $argument
+     * @param ArgumentDefinitionInterface $definition
+     * @param array                       $paths
+     */
+    protected function concat(array &$argument, ArgumentDefinitionInterface $definition, $paths)
     {
         if (null !== $definition->getSeparator()) {
             $argument[] = sprintf(
@@ -147,6 +196,13 @@ class Cludearg
         }
     }
 
+    /**
+     * Find right application version from definition.
+     *
+     * @param string $applicationName
+     * @param string $version
+     * @return Fabiang\Cludearg\Definition\Version
+     */
     private function findDefinition($applicationName, $version)
     {
         $foundApplication = null;
