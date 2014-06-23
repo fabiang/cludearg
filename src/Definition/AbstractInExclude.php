@@ -124,11 +124,11 @@ abstract class AbstractInExclude implements InExcludeInterface, DefinitionInterf
         $this->setCombined($options['combined']);
 
         $path = new Path();
-        $path->setOptions($options['path']);
+        $path->setOptions((array) $options['path']);
         $this->setPath($path);
 
         $file = new File();
-        $file->setOptions($options['file']);
+        $file->setOptions((array) $options['file']);
         $this->setFile($file);
     }
 }

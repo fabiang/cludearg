@@ -36,6 +36,8 @@
 
 namespace Fabiang\Cludearg;
 
+use Seld\JsonLint\JsonParser;
+
 /**
  *
  */
@@ -43,6 +45,7 @@ class Loader
 {
 
     /**
+     * Load definition from array.
      *
      * @param array $definition
      * @return Definition
@@ -52,5 +55,22 @@ class Loader
         $definitionObject = new Definition;
         $definitionObject->setOptions($definition);
         return $definitionObject;
+    }
+
+    /**
+     * Parse json file into definition format.
+     *
+     * @param string $filename
+     * @return Definition
+     */
+    public function loadJSON($filename)
+    {
+        if (!is_readable($filename)) {
+            throw new \RuntimeException('JSON file "' . $filename . '" doesn\'t readable');
+        }
+        $json   = file_get_contents($filename);
+        $parser = new JsonParser();
+        $parsed = $parser->parse($json);
+        return static::load((array) $parsed);
     }
 }

@@ -123,13 +123,13 @@ class Version implements VersionInterface, DefinitionInterface
     {
         if (isset($options['include'])) {
             $include = new IncludeDefinition();
-            $include->setOptions($options['include']);
+            $include->setOptions((array) $options['include']);
             $this->setInclude($include);
         }
 
         if (isset($options['exclude'])) {
             $exclude = new ExcludeDefinition();
-            $exclude->setOptions($options['exclude']);
+            $exclude->setOptions((array) $options['exclude']);
             $this->setExclude($exclude);
         }
     }

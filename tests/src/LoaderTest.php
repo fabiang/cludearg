@@ -166,4 +166,21 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($path->isRelative());
         $this->assertTrue($path->isWildcard());
     }
+
+    /**
+     * @covers Fabiang\Cludearg\Loader::loadJSON
+     * @uses Fabiang\Cludearg\Loader::load
+     * @uses Fabiang\Cludearg\Definition
+     * @uses Fabiang\Cludearg\Definition\AbstractInExclude
+     * @uses Fabiang\Cludearg\Definition\Application
+     * @uses Fabiang\Cludearg\Definition\Version
+     * @uses Fabiang\Cludearg\Definition\AbstractArgumentDefinition
+     */
+    public function testLoadJson()
+    {
+        $this->assertInstanceOf(
+            '\\Fabiang\\Cludearg\\Definition',
+            $this->object->loadJSON(__DIR__ . '/../../definition.json')
+        );
+    }
 }

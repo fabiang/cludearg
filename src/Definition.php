@@ -109,7 +109,7 @@ class Definition implements DefinitionInterface
         foreach ($options as $name => $applicationDefinition) {
             $application = new Application();
             $application->setName($name);
-            $application->setOptions($applicationDefinition);
+            $application->setOptions((array) $applicationDefinition);
             $this->addApplication($application);
         }
     }

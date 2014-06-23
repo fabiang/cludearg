@@ -112,7 +112,7 @@ class Application implements DefinitionInterface
             $versions = explode(',', $version);
 
             $version = new Version;
-            $version->setOptions($definition);
+            $version->setOptions((array) $definition);
             $version->setVersion(array_shift($versions));
             $this->addVersion($version);
 
