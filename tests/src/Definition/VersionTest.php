@@ -86,6 +86,15 @@ class VersionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Fabiang\Cludearg\Definition\Version::getOrder
+     * @covers Fabiang\Cludearg\Definition\Version::setOrder
+     */
+    public function testSetAndGetOrder()
+    {
+        $this->assertSame(array('test'), $this->object->setOrder(array('test'))->getOrder());
+    }
+
+    /**
      * @covers Fabiang\Cludearg\Definition\Version::setOptions
      * @uses Fabiang\Cludearg\Definition\AbstractInExclude
      * @uses Fabiang\Cludearg\Definition\AbstractArgumentDefinition
@@ -94,6 +103,12 @@ class VersionTest extends \PHPUnit_Framework_TestCase
     public function testSetOptions()
     {
         $this->object->setOptions(array(
+            'order'   => array(
+                'exclude-paths',
+                'include-paths',
+                'exclude-files',
+                'include-files',
+            ),
             'exclude' => array(
                 'combined' => true,
                 'onlyOne'  => true,
@@ -138,5 +153,14 @@ class VersionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('\Fabiang\Cludearg\Definition\IncludeDefinition', $this->object->getInclude());
         $this->assertInstanceOf('\Fabiang\Cludearg\Definition\ExcludeDefinition', $this->object->getExclude());
+        $this->assertSame(
+            array(
+                'exclude-paths',
+                'include-paths',
+                'exclude-files',
+                'include-files',
+            ),
+            $this->object->getOrder()
+        );
     }
 }

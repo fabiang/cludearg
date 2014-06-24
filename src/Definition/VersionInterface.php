@@ -86,4 +86,19 @@ interface VersionInterface
      * @return $this
      */
     public function setVersion($version);
+
+    /**
+     * Get ordering of arguments.
+     *
+     * @return array
+     */
+    public function getOrder();
+
+    /**
+     * Set ordering of arguments.
+     *
+     * @param array $order
+     * @return $this
+     */
+    public function setOrder(array $order);
 }

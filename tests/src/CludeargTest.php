@@ -178,6 +178,21 @@ class CludeargTest extends \PHPUnit_Framework_TestCase
                 'argument'    => "-i 'vfs://test/bat,vfs://test/abc' -d 'vfs://test/bar,vfs://test/moo' "
                 . "-f 'vfs://test/foo.php'"
             ),
+            array(
+                'application' => 'pdepend/pdepend',
+                'version'     => '1.1.0',
+                'include'     => array('foo.php', 'bar', 'moo'),
+                'exclude'     => array('baz.php', 'bat', 'moo.php', 'abc'),
+                'argument'    => "--ignore='bat,abc' 'vfs://test/foo.php,vfs://test/bar,vfs://test/moo'"
+            ),
+            array(
+                'application' => 'sebastian/phpcpd',
+                'version'     => '2.1.0',
+                'include'     => array('foo.php', 'bar', 'moo'),
+                'exclude'     => array('baz.php', 'bat', 'moo.php', 'abc'),
+                'argument'    => "--exclude='baz.php' --exclude='bat' --exclude='moo.php' --exclude='abc' "
+                . "'vfs://test/bar' 'vfs://test/moo' --names='foo.php'"
+            ),
         );
     }
 }

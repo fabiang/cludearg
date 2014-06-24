@@ -13,7 +13,7 @@
  *   this list of conditions and the following disclaimer in the documentation
  *   and/or other materials provided with the distribution.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
@@ -50,6 +50,18 @@ class Version implements VersionInterface, DefinitionInterface
      * @var string
      */
     protected $version;
+
+    /**
+     * Ordering of arguments.
+     *
+     * @var array
+     */
+    protected $order = array(
+        'exclude-paths',
+        'exclude-files',
+        'include-paths',
+        'include-files',
+    );
 
     /**
      * Exclude definition.
@@ -119,8 +131,29 @@ class Version implements VersionInterface, DefinitionInterface
     /**
      * {@inheritDoc}
      */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setOrder(array $order)
+    {
+        $this->order = $order;
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setOptions(array $options)
     {
+        if (isset($options['order'])) {
+            $this->setOrder($options['order']);
+        }
+
         if (isset($options['include'])) {
             $include = new IncludeDefinition();
             $include->setOptions((array) $options['include']);
