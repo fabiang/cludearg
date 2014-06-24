@@ -77,6 +77,11 @@ class Cludearg
     public function getArgument($application, $version, array $include, array $exclude, $path)
     {
         $definition = $this->findDefinition($application, $version);
+
+        if (false === $definition) {
+            return false;
+        }
+
         $path       = rtrim($path, '/');
 
         $arguments      = array('exclude' => array(), 'include' => array());
@@ -214,6 +219,10 @@ class Cludearg
                 $foundApplication = $application;
                 break;
             }
+        }
+
+        if (null === $foundApplication) {
+            return false;
         }
 
         $versions = $foundApplication->getVersions();

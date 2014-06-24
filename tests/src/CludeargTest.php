@@ -99,6 +99,51 @@ class CludeargTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Fabiang\Cludearg\Cludearg::getArgument
+     * @covers Fabiang\Cludearg\Cludearg::findDefinition
+     * @uses Fabiang\Cludearg\Cludearg::__construct
+     * @uses Fabiang\Cludearg\Loader
+     * @uses Fabiang\Cludearg\Definition
+     * @uses Fabiang\Cludearg\Definition\AbstractInExclude
+     * @uses Fabiang\Cludearg\Definition\Application
+     * @uses Fabiang\Cludearg\Definition\Version
+     * @uses Fabiang\Cludearg\Definition\AbstractArgumentDefinition
+     */
+    public function testGetArgumentApplicationNotfound()
+    {
+        $this->assertFalse($this->object->getArgument(
+            'not/existing',
+            '1.0.0',
+            array(),
+            array(),
+            vfsStream::url('test/')
+        ));
+    }
+
+    /**
+     * @covers Fabiang\Cludearg\Cludearg::getArgument
+     * @covers Fabiang\Cludearg\Cludearg::findDefinition
+     * @uses Fabiang\Cludearg\Cludearg::__construct
+     * @uses Fabiang\Cludearg\Loader
+     * @uses Fabiang\Cludearg\Definition
+     * @uses Fabiang\Cludearg\Definition\AbstractInExclude
+     * @uses Fabiang\Cludearg\Definition\Application
+     * @uses Fabiang\Cludearg\Definition\Version
+     * @uses Fabiang\Cludearg\Definition\AbstractArgumentDefinition
+     * @uses Fabiang\Cludearg\Util\Version::findMostMatching
+     */
+    public function testGetArgumentVersionNotfound()
+    {
+        $this->assertFalse($this->object->getArgument(
+            'squizlabs/php_codesniffer',
+            '2.0.0',
+            array(),
+            array(),
+            vfsStream::url('test/')
+        ));
+    }
+
+    /**
      * @return array
      */
     public function provideApplications()
