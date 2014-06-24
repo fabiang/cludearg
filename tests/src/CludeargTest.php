@@ -191,7 +191,7 @@ class CludeargTest extends \PHPUnit_Framework_TestCase
                 'include'     => array('foo.php', 'bar', 'moo'),
                 'exclude'     => array('baz.php', 'bat', 'moo.php', 'abc'),
                 'argument'    => "--exclude='baz.php' --exclude='bat' --exclude='moo.php' --exclude='abc' "
-                . "'vfs://test/bar' 'vfs://test/moo' --names='foo.php'"
+                . "--names='foo.php' 'vfs://test/bar' 'vfs://test/moo'"
             ),
         );
     }

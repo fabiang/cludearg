@@ -82,28 +82,31 @@ class Cludearg
             return false;
         }
 
-        $path = rtrim($path, '/');
+        $path      = rtrim($path, '/');
+        $arguments = array(
+            'exclude-paths' => array(),
+            'exclude-files' => array(),
+            'include-paths' => array(),
+            'include-files' => array(),
+        );
 
-        $arguments      = array('exclude' => array(), 'include' => array());
         $loopDefinition = array('exclude' => $definition->getExclude(), 'include' => $definition->getInclude());
         $inexclude      = array('exclude' => $exclude, 'include' => $include);
         foreach ($loopDefinition as $type => $definitionObject) {
-            // ugly but intentionally
             $loopPaths = $inexclude[$type];
-            $argument  = &$arguments[$type];
 
             if ($definitionObject->isCombined() && ($definitionObject->getPath() || $definitionObject->getFile())) {
-                $definition = $definitionObject->getPath() ? $definitionObject->getPath()
+                $definitionType = $definitionObject->getPath() ? $definitionObject->getPath()
                     : $definitionObject->getFile();
                 $this->concat(
-                    $argument,
-                    $definition,
-                    $this->makeAbsolute($loopPaths, $path, $definition->isRelative())
+                    $arguments[$type . '-paths'],
+                    $definitionType,
+                    $this->makeAbsolute($loopPaths, $path, $definitionType->isRelative())
                 );
             } else {
                 if (null !== $definitionObject->getPath()) {
                     $this->addPaths(
-                        $argument,
+                        $arguments[$type . '-paths'],
                         $loopPaths,
                         $path,
                         function ($file) use ($path) {
@@ -116,12 +119,12 @@ class Cludearg
                 if (null !== $definitionObject->getFile()) {
 
                     // continue if only either path or file can be defined
-                    if ($definitionObject->isOnlyOne() && !empty($argument)) {
+                    if ($definitionObject->isOnlyOne() && !empty($arguments[$type . '-paths'])) {
                         continue;
                     }
 
                     $this->addPaths(
-                        $argument,
+                        $arguments[$type . '-files'],
                         $loopPaths,
                         $path,
                         function ($file) use ($path) {
@@ -134,7 +137,14 @@ class Cludearg
 
         }
 
-        return trim(trim(implode(' ', $arguments['exclude'])) . ' ' . trim(implode(' ', $arguments['include'])));
+        $returnArguments = array();
+        foreach ($definition->getOrder() as $order) {
+            if (!empty($arguments[$order])) {
+                $returnArguments[] = trim(implode(' ', $arguments[$order]));
+            }
+        }
+
+        return trim(implode(' ', array_filter($returnArguments)));
     }
 
     /**
