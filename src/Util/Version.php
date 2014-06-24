@@ -61,7 +61,7 @@ class Version
 
         foreach ($versions as $versionObject) {
             $versionMatchString = $versionObject->getVersion();
-            $versionExplode = explode('.', $versionMatchString);
+            $versionExplode     = explode('.', $versionMatchString);
 
             $w = 0;
             foreach ($version as $i => $versionPart) {
