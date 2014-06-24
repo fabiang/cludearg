@@ -218,6 +218,6 @@ class Cludearg
 
         $versions = $foundApplication->getVersions();
         $version = VersionUtil::findMostMatching($version, $versions);
-        return $versions[0];
+        return $version;
     }
 }
