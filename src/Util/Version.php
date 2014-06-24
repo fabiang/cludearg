@@ -45,9 +45,9 @@ class Version
     /**
      * Find most matching version.
      *
-     * @param string                                 $version
-     * @param \Fabiang\Cludearg\Definition\Version[] $versions
-     * @return \Fabiang\Cludearg\Definition\Version
+     * @param string                                          $version
+     * @param \Fabiang\Cludearg\Definition\VersionInterface[] $versions
+     * @return \Fabiang\Cludearg\Definition\VersionInterface
      */
     public static function findMostMatching($version, array $versions)
     {
