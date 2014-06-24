@@ -82,7 +82,7 @@ class Cludearg
             return false;
         }
 
-        $path       = rtrim($path, '/');
+        $path = rtrim($path, '/');
 
         $arguments      = array('exclude' => array(), 'include' => array());
         $loopDefinition = array('exclude' => $definition->getExclude(), 'include' => $definition->getInclude());
