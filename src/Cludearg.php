@@ -76,9 +76,9 @@ class Cludearg
      */
     public function getArgument($application, $version, array $include, array $exclude, $path)
     {
-        $definition = $this->findDefinition($application, $version);
+        $versionDefinition = $this->findDefinition($application, $version);
 
-        if (false === $definition) {
+        if (false === $versionDefinition) {
             return false;
         }
 
@@ -90,9 +90,13 @@ class Cludearg
             'include-files' => array(),
         );
 
-        $loopDefinition = array('exclude' => $definition->getExclude(), 'include' => $definition->getInclude());
-        $inexclude      = array('exclude' => $exclude, 'include' => $include);
-        foreach ($loopDefinition as $type => $definitionObject) {
+        $definitionObjects = array(
+            'exclude' => $versionDefinition->getExclude(),
+            'include' => $versionDefinition->getInclude()
+        );
+        $inexclude = array('exclude' => $exclude, 'include' => $include);
+
+        foreach ($definitionObjects as $type => $definitionObject) {
             $loopPaths = $inexclude[$type];
 
             if ($definitionObject->isCombined() && ($definitionObject->getPath() || $definitionObject->getFile())) {
@@ -137,8 +141,20 @@ class Cludearg
 
         }
 
+        return $this->buildArgumentString($versionDefinition->getOrder(), $arguments);
+    }
+
+    /**
+     * Build argument string from arguments array maintaining the right order.
+     *
+     * @param array $orderDefinition
+     * @param array $arguments
+     * @return string
+     */
+    protected function buildArgumentString(array $orderDefinition, array $arguments)
+    {
         $returnArguments = array();
-        foreach ($definition->getOrder() as $order) {
+        foreach ($orderDefinition as $order) {
             if (!empty($arguments[$order])) {
                 $returnArguments[] = trim(implode(' ', $arguments[$order]));
             }
