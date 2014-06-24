@@ -73,7 +73,7 @@ which allows you to add your own definition of arguments.
 - PHP >=5.3
 - seld/jsonlint >= 1.1
 
-## LICENCE
+## LICENSE
 
 BSD-2-Clause. See the [LICENSE](LICENSE.md).
 
