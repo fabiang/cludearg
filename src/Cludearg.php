@@ -163,7 +163,7 @@ class Cludearg
      * @param array  $paths
      * @param string $path
      * @param bool   $relative
-     * @return string
+     * @return array
      */
     protected function makeAbsolute($paths, $path, $relative)
     {
