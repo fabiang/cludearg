@@ -49,10 +49,11 @@ $arguments = $cludearg->getArgument(
     '1.0.1',
     array('bin/foo.php', 'src'), // files and folders to be included
     array('vendor', 'tests'), // files and folders to be excluded
-    '/myproject' // path where the 
+    '/myproject' // path where the project can be found
 );
 ```
 
+All paths for in- and exclude must be relative to the given path.
 The constructor of `Cludearg` can optionally take an `Definition` object, which allows you to add your own definition of arguments.
 
 ## SYSTEM REQUIREMENTS
