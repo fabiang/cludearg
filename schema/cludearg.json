@@ -58,12 +58,6 @@
                 "separator": {
                     "type": ["string", "null"]
                 },
-                "wildcard": {
-                    "type": "boolean"
-                },
-                "regex": {
-                    "type": "boolean"
-                },
                 "multiple": {
                     "type": "boolean"
                 },

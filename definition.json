@@ -14,8 +14,6 @@
                 "file": {
                     "parameter": "-l %s",
                     "separator": null,
-                    "wildcard": false,
-                    "regex": false,
                     "multiple": false,
                     "relative": false
                 }
@@ -30,16 +28,12 @@
                 "path": {
                     "parameter": "--ignore=%s",
                     "separator": ",",
-                    "wildcard": true,
-                    "regex": true,
                     "multiple": false,
                     "relative": false
                 },
                 "file": {
                     "parameter": "--ignore=%s",
                     "separator": ",",
-                    "wildcard": true,
-                    "regex": true,
                     "multiple": false,
                     "relative": false
                 }
@@ -50,16 +44,12 @@
                 "path": {
                     "parameter": "%s",
                     "separator": null,
-                    "wildcard": true,
-                    "regex": true,
                     "multiple": true,
                     "relative": false
                 },
                 "file": {
                     "parameter": "%s",
                     "separator": null,
-                    "wildcard": true,
-                    "regex": true,
                     "multiple": true,
                     "relative": false
                 }
@@ -74,16 +64,12 @@
                 "path": {
                     "parameter": "--exclude %s",
                     "separator": ",",
-                    "wildcard": true,
-                    "regex": false,
                     "multiple": false,
                     "relative": false
                 },
                 "file": {
                     "parameter": "--exclude %s",
                     "separator": ",",
-                    "wildcard": true,
-                    "regex": false,
                     "multiple": false,
                     "relative": false
                 }
@@ -94,16 +80,12 @@
                 "path": {
                     "parameter": "%s",
                     "separator": null,
-                    "wildcard": false,
-                    "regex": false,
                     "multiple": false,
                     "relative": false
                 },
                 "file": {
                     "parameter": "%s",
                     "separator": null,
-                    "wildcard": false,
-                    "regex": false,
                     "multiple": false,
                     "relative": false
                 }
@@ -118,8 +100,6 @@
                 "path": {
                     "parameter": "-i %s",
                     "separator": ",",
-                    "wildcard": true,
-                    "regex": false,
                     "multiple": false,
                     "relative": false
                 },
@@ -131,16 +111,12 @@
                 "path": {
                     "parameter": "-d %s",
                     "separator": ",",
-                    "wildcard": true,
-                    "regex": false,
                     "multiple": false,
                     "relative": false
                 },
                 "file": {
                     "parameter": "-f %s",
                     "separator": null,
-                    "wildcard": true,
-                    "regex": false,
                     "multiple": false,
                     "relative": false
                 }
@@ -155,8 +131,6 @@
                 "path": {
                     "parameter": "--ignore=%s",
                     "separator": ",",
-                    "wildcard": true,
-                    "regex": false,
                     "multiple": false,
                     "relative": true
                 },
@@ -168,16 +142,12 @@
                 "path": {
                     "parameter": "%s",
                     "separator": ",",
-                    "wildcard": false,
-                    "regex": false,
                     "multiple": false,
                     "relative": false
                 },
                 "file": {
                     "parameter": "%s",
                     "separator": ",",
-                    "wildcard": false,
-                    "regex": false,
                     "multiple": false,
                     "relative": false
                 }
@@ -193,16 +163,12 @@
                 "path": {
                     "parameter": "--exclude=%s",
                     "separator": null,
-                    "wildcard": false,
-                    "regex": false,
                     "multiple": true,
                     "relative": true
                 },
                 "file": {
                     "parameter": "--exclude-names=%s",
                     "separator": ",",
-                    "wildcard": true,
-                    "regex": false,
                     "multiple": false,
                     "relative": true
                 }
@@ -213,16 +179,12 @@
                 "path": {
                     "parameter": "%s",
                     "separator": null,
-                    "wildcard": true,
-                    "regex": false,
                     "multiple": true,
                     "relative": false
                 },
                 "file": {
                     "parameter": "--names=%s",
                     "separator": ",",
-                    "wildcard": true,
-                    "regex": false,
                     "multiple": false,
                     "relative": true
                 }
