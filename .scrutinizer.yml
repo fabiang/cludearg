@@ -1,15 +1,10 @@
 imports:
     - php
 
-before_commands:
-    - "composer install --dev --prefer-source --no-interaction"
-
 filter:
     excluded_paths: [vendor/*, tests/*]
 
 tools:
-    php_code_coverage:
-        test_command: ./vendor/bin/phpunit -c tests/
     php_code_sniffer:
         config:
             standard: PSR2
@@ -34,3 +29,4 @@ tools:
             paths: [src/*, tests/*]
     sensiolabs_security_checker: true
     php_changetracking: true
+    external_code_coverage: true
